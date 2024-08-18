@@ -8,7 +8,6 @@ type ChatRoomModalProps = {
 const ChatRoomCard = ({ room }: ChatRoomModalProps) => {
   return (
     <Card
-      size="small"
       title={room.name}
       extra={<Link to={`/chat/${room.id}`}> Go to Room </Link>}
       style={{ width: 300 }}

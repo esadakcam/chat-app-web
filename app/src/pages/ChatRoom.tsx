@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchMessages } from "../services/chatServices";
+import { fetchMessages, Message } from "../services/chatServices";
 import { Flex, Spin, Typography } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import MessageModal from "../components/MessageModal";
 
 const ChatRoom = () => {
   const { id } = useParams<{ id: string }>();
-  const [messages, setMessages] = React.useState<string[]>([]);
+  const [messages, setMessages] = React.useState<Message[]>([]);
   useEffect(() => {
     const getMessages = async () => {
       if (!id) return;
@@ -31,7 +32,7 @@ const ChatRoom = () => {
         </div>
       )}
       {messages.map((message, index) => (
-        <Typography.Text key={index}>{message}</Typography.Text>
+        <MessageModal key={index} message={message}></MessageModal>
       ))}
     </Flex>
   );
